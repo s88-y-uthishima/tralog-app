@@ -11,7 +11,7 @@
   </head>
 
   <body>
-  <header class="header">
+    <header class="header">
       <div class="inner">
         <div class="nav">
           <div class="nav__left">
@@ -19,17 +19,17 @@
           </div>
           <%# ログインしているときは以下を表示するようにしましょう %>
             <%# if user_signed_in? %>
-              <div class="nav__right"> 
-                <%= link_to "ログアウト", "#", method: :delete, class: :nav__logout %>
-                <%= link_to "投稿", "#", class: :nav__btn %>
-              </div>
+          <div class="nav__right"> 
+            <%= link_to "ログアウト", "#", method: :delete, class: :nav__logout %>
+            <%= link_to "投稿", "#", class: :nav__btn %>
+          </div>
           <%# // ログインしているときは上記を表示するようにしましょう %>
           <%# ログインしていないときは以下を表示するようにしましょう %>
             <%# else %>
-              <div class="nav__right">
-                <%= link_to "ログイン", "#", class: :nav__btn %>
-                <%= link_to "新規登録", "#", class: :nav__btn %>
-              </div>
+          <div class="nav__right">
+            <%= link_to "ログイン", "#", class: :nav__btn %>
+            <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+          </div>
             <%# end %>
           <%# // ログインしていないときは上記を表示するようにしましょう %>
         </div>
