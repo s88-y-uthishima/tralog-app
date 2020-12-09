@@ -6,30 +6,31 @@
       </p>
       <div class="post__image">
         <%= image_tag @post.image %>
-        <%= link_to "by #{@post.user.nickname}", class: :prototype__user %>
       </div>
-      <% if  user_signed_in? && current_user.id == @post.user_id %>
-        <div class="post__manage">
-          <%= link_to "編集する", edit_post_path(@post.id), class: :post__btn %>
-          <%= link_to "削除する", post_path(@post.id), method: :delete, class: :post__btn %>
-        </div>
-      <% end %>
+      <div class="post__edit">
+        <%= link_to "by #{@post.user.nickname}", class: :post__user %>
+        <% if  user_signed_in? && current_user.id == @post.user_id %>
+          <div class="post__manage">
+            <%= link_to "編集する", edit_post_path(@post.id), class: :post__btn %>
+            <%= link_to "削除する", post_path(@post.id), method: :delete, class: :post__btn %>
+          </div>
+        <% end %>
+      </div>
       <div class="post__body">
         <div class="post__detail">
-          <p class="detail__title">コメント</p>
+          <p class="detail__comment">コメント</p>
           <p class="detail__message">
             <%= @post.comment %>
           </p>
         </div>
-        <div class="post__detail">
-          <p class="detail__title">場所</p>
-          <p id="address" class="detail__message">
-            <%= @post.address %>
-          </p>
-        </div>
         <div class="map-container">
+          <div class="post__detail">
+            <p id="address" class="detail__message detail__address">
+              <%= @post.address %>
+            </p>
+          </div>
           <div class="map_wrapper">
-            <div id="map" class="map" style="width:620px; height:400px"></div>
+            <div id="map" class="map" style="width:620px; height:300px"></div>
           </div>
         </div>
         <script>
