@@ -10,10 +10,10 @@
 
 ### Association
 
-- has_many :tweets
+- has_many :posts
 - has_many :comments
 
-## tweet テーブル
+## post テーブル
 
 | Column  | Type       | Options                        |
 | ------- | ---------- | ------------------------------ |
@@ -33,9 +33,9 @@
 | ------ | ---------- | ------------------------------ |
 | text   | text       | null: false                    |
 | user   | references | null: false, foreign_key: true |
-| tweet  | references | null: false, foreign_key: true |
+| post   | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- belongs_to :tweet
+- belongs_to :post
