@@ -4,12 +4,40 @@
     <title>Tralog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
+    <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header class="header">
+      <div class="inner">
+        <div class="nav">
+          <div class="nav__left">
+            <%= link_to image_tag("logo.png", class: :logo), root_path %>
+          </div>
+          <%# ログインしているときは以下を表示 %>
+          <% if user_signed_in? %>
+            <div class="nav__right"> 
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: :nav__logout %>
+              <%= link_to "投稿", "#", class: :nav__btn %>
+            </div>
+            <%# // ログインしているときは上記を表示 %>
+            <%# ログインしていないときは以下を表示 %>
+          <% else %>
+            <div class="nav__right">
+              <%= link_to "ログイン", new_user_session_path, class: :nav__btn %>
+              <%= link_to "新規登録", new_user_registration_path, class: :nav__btn %>
+            </div>
+          <% end %>
+          <%# // ログインしていないときは上記を表示 %>
+        </div>
+      </div>
+    </header>
     <%= yield %>
+    <footer class="footer">
+      <p class="copyright">Copyright © TRAROG All rights reserved.</p>
+    </footer>
   </body>
 </html>
