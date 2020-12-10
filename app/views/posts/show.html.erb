@@ -18,7 +18,7 @@
       </div>
       <div class="post__body">
         <div class="post__detail">
-          <p class="detail__comment">コメント</p>
+          <p class="detail__comment">説明</p>
           <p class="detail__message">
             <%= @post.comment %>
           </p>
@@ -26,7 +26,7 @@
         <div class="map-container">
           <div class="post__detail">
             <p id="address" class="detail__message detail__address">
-              <%= @post.address %>
+              撮影場所 <%= @post.address %>
             </p>
           </div>
           <div class="map_wrapper">
@@ -47,11 +47,11 @@
 
             //geocoder.geocode() にアドレスを渡して、コールバック関数を記述して処理
             geocoder.geocode({ address: address }, function(results, status){
-            //ステータスが OK で results[0] が存在すれば、地図を生成
+              //ステータスが OK で results[0] が存在すれば、地図を生成
               if (status === 'OK' && results[0]){
                 //マップのインスタンスを変数に代入
                 var map = new google.maps.Map(target, {
-                //results[0].geometry.location に緯度・経度のオブジェクトが入っている
+                  //results[0].geometry.location に緯度・経度のオブジェクトが入っている
                   center: results[0].geometry.location,
                   zoom: 15
                 });
@@ -75,7 +75,7 @@
                   infowindow.open(map, marker);
                 });
               }else{
-              //ステータスが OK 以外の場合や results[0] が存在しなければ、アラートを表示して処理を中断
+                //ステータスが OK 以外の場合や results[0] が存在しなければ、アラートを表示して処理を中断
                 alert("住所から位置の取得ができませんでした。: " + status);
                 return;
               }
@@ -84,29 +84,29 @@
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPZRy6gl-DSwkdqOJ0mueeYRVWglY6rDg&callback=initMap" async defer></script>
       </div>
-      <%# <div class="post__comments">
+      <div class="post__comments">
         <% if user_signed_in? %>
-          <%#= form_with(model: [@post, @comment], local: true) do |f| %>
-            <%# <div class="field"> %>
-              <%# = f.label :text, "コメント"<br /> %>
-              <%#= f.text_field :text %>
-            <%# </div> %>
-            <%# <div class="actions"> %>
-              <%#= f.submit "送信する", class: :form__btn  %>
-            <%# </div> %>
-          <%# end %> 
-        <%# end %>
-        <%# <ul class="comments_lists"> %>
-          <%# if @comments %>
-            <%# @comments.each do |comment| %>
-              <%# <li class="comments_list"> %>
-                <%#= comment.text %>
-                <%#= link_to "(#{comment.user.name})", user_path(comment.user.id), class: :comment_user %>
-              <%# </li> %>
-            <%# end %>
-          <%# end %>
-        <%# </ul> %>
-      <%# </div> %>
+          <%= form_with(model: [@post, @comment], local: true) do |f| %>
+            <div class="field">
+              <%= f.label :text, "コメント" %><br />
+              <%= f.text_field :text %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %> 
+        <% end %>
+        <ul class="comments_lists">
+          <% if @comments %>
+            <% @comments.each do |comment| %>
+              <li class="comments_list">
+                <%= comment.text %>
+                <%= "(#{comment.user.nickname})" %>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </main>

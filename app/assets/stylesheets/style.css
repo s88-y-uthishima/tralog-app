@@ -199,7 +199,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 8px;
+  margin-bottom: 1px;
 }
 .detail__comment{
   font-size: 20px;
@@ -234,7 +234,14 @@ a {
 .post__comments{
   background-color: #f6f6f6;
   padding: 20px;
-  margin: 28px 0 40px 0;
+  margin: 2px 0 40px 0;
+  color: #2c2c2f;
+  background: #cde4ff;
+  border-top: solid 5px #5989cf;
+  border-bottom: solid 5px #5989cf;
+  display: flex;
+  align-items: left;
+  flex-direction: column;
 }
 
 .comments_lists{
