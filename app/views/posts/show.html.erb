@@ -3,12 +3,12 @@
     <div class="post__wrapper">
       <p class="post__hedding">
         <%= @post.title %>
+        <%= link_to "by #{@post.user.nickname}", class: :post__user %>
       </p>
       <div class="post__image">
         <%= image_tag @post.image %>
       </div>
       <div class="post__edit">
-        <%= link_to "by #{@post.user.nickname}", class: :post__user %>
         <% if  user_signed_in? && current_user.id == @post.user_id %>
           <div class="post__manage">
             <%= link_to "編集する", edit_post_path(@post.id), class: :post__btn %>
@@ -16,9 +16,11 @@
           </div>
         <% else %>
           <% if Like.find_by(user_id: current_user.id, post_id: @post.id) %>
-            <%= link_to("いいね済み", "/likes/#{@post.id}/destroy", {method: "post"}) %><%= @like_count %>
+            <i class="fas fa-heart"></i><%= @like_count %>
+            <%= link_to "いいね済み", "/likes/#{@post.id}/destroy", method: "post", class: :like__btn %>
           <% else %>
-            <%= link_to("いいね！", "/likes/#{@post.id}/create", {method: "post"}) %><%= @like_count %>
+            <i class="far fa-heart"></i><%= @like_count %>
+            <%= link_to "いいね！", "/likes/#{@post.id}/create", method: "post", class: :like__btn %>
           <% end %>
         <% end %>
       </div>

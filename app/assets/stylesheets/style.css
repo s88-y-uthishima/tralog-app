@@ -259,6 +259,21 @@ a {
   text-decoration: underline;
 }
 
+.fa-heart{
+  color: #d65fb8;
+}
+.like__btn{
+  display: block;
+  padding: 0.8em 1em;
+  font-size: 0.8em;
+  color: #999;
+  border: 1px #999 solid;
+  border-radius: 3px;
+  margin: 0 auto;
+  width: 100px;
+  text-align: center;
+}
+
 /* ユーザーページ */
 .user__wrapper{
   min-height: calc(100vh - 161px);
