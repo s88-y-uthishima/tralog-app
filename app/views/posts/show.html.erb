@@ -14,6 +14,12 @@
             <%= link_to "編集する", edit_post_path(@post.id), class: :post__btn %>
             <%= link_to "削除する", post_path(@post.id), method: :delete, class: :post__btn %>
           </div>
+        <% else %>
+          <% if Like.find_by(user_id: current_user.id, post_id: @post.id) %>
+            <%= link_to("いいね済み", "/likes/#{@post.id}/destroy", {method: "post"}) %><%= @like_count %>
+          <% else %>
+            <%= link_to("いいね！", "/likes/#{@post.id}/create", {method: "post"}) %><%= @like_count %>
+          <% end %>
         <% end %>
       </div>
       <div class="post__body">
